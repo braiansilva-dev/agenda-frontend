@@ -199,21 +199,68 @@ function calcularSubtotal() {
 }
 
 // ============================================
-// FUNCIÓN: Configurar fecha mínima y máxima
+// ✨ FUNCIÓN MEJORADA: Configurar fecha mínima y deshabilitar domingos
 // ============================================
 function configurarFechaMinima() {
     const inputFecha = document.getElementById('fecha');
     if (!inputFecha) return;
     
+    // ✨ Configurar fecha mínima como HOY
     const hoy = new Date();
     const fechaMinima = formatearFechaInput(hoy);
     inputFecha.min = fechaMinima;
     
+    // Configurar fecha máxima (60 días adelante)
     const fechaMaxima = new Date();
     fechaMaxima.setDate(fechaMaxima.getDate() + 60);
     inputFecha.max = formatearFechaInput(fechaMaxima);
     
     console.log(`📅 Rango de fechas: ${fechaMinima} a ${inputFecha.max}`);
+    
+    // ✨ NUEVO: Validar la fecha cuando el usuario la selecciona
+    inputFecha.addEventListener('input', validarFechaSeleccionada);
+}
+
+// ============================================
+// ✨ NUEVA FUNCIÓN: Validar fecha seleccionada
+// ============================================
+function validarFechaSeleccionada(evento) {
+    const inputFecha = evento.target;
+    const fechaSeleccionada = inputFecha.value;
+    
+    if (!fechaSeleccionada) return;
+    
+    const fecha = new Date(fechaSeleccionada + 'T00:00:00');
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    
+    // Verificar si es fecha pasada
+    if (fecha < hoy) {
+        console.log('⚠️ Fecha pasada detectada');
+        inputFecha.value = '';
+        mostrarMensaje(
+            'Fecha inválida',
+            'No puedes seleccionar una fecha que ya pasó. Por favor elige una fecha desde hoy en adelante.',
+            'error'
+        );
+        return;
+    }
+    
+    // ✨ Verificar si es domingo (día 0)
+    const diaSemana = fecha.getDay();
+    if (diaSemana === 0) { // 0 = Domingo
+        console.log('⚠️ Domingo detectado');
+        inputFecha.value = '';
+        mostrarMensaje(
+            'Día no disponible',
+            'Los domingos no hay atención. Por favor selecciona otro día.',
+            'error'
+        );
+        return;
+    }
+    
+    // Si llegamos aquí, la fecha es válida
+    console.log(`✅ Fecha válida seleccionada: ${fechaSeleccionada}`);
 }
 
 // ============================================
@@ -455,7 +502,7 @@ async function realizarReserva(evento) {
         nombre: formData.get('nombre').trim(),
         email: formData.get('email').trim(),
         telefono: formData.get('telefono')?.trim() || '',
-        servicios: serviciosSeleccionados, // Usar array de servicios seleccionados
+        servicios: serviciosSeleccionados,
         fecha: formData.get('fecha'),
         hora: horaSeleccionada || formData.get('hora'),
         subtotal: calcularSubtotal()
