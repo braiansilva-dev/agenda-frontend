@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Agenda</title>
+    <link rel="stylesheet" href="./css/admin-styles.css">
+</head>
+<body>
+    
+    <!-- ============================================
+         PANTALLA DE LOGIN
+         ============================================ -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <h1>🔐 Panel de Administración</h1>
+                    <p>Inicia sesión para gestionar tus citas</p>
+                </div>
+
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input 
+                            type="email" 
+                            id="loginEmail" 
+                            class="form-input"
+                            placeholder="admin@agenda.com"
+                            required
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Contraseña</label>
+                        <input 
+                            type="password" 
+                            id="loginPassword" 
+                            class="form-input"
+                            placeholder="••••••••"
+                            required
+                            autocomplete="current-password"
+                        >
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="btnLogin">
+                        Iniciar Sesión
+                    </button>
+
+                    <div id="loginError" class="error-message" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         PANEL DE ADMINISTRACIÓN (DASHBOARD)
+         ============================================ -->
+    <div id="adminPanel" class="admin-panel" style="display: none;">
+        
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <h1>📅 Panel de Administración</h1>
+                <div class="admin-header-right">
+                    <span class="admin-name" id="adminName">Admin</span>
+                    <button class="btn-secondary btn-sm" onclick="abrirCambiarPassword()">
+                        🔑 Cambiar Contraseña
+                    </button>
+                    <button class="btn-danger btn-sm" onclick="logout()">
+                        🚪 Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Estadísticas -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <h3 id="statTotal">0</h3>
+                        <p>Total de Citas</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📆</div>
+                    <div class="stat-content">
+                        <h3 id="statHoy">0</h3>
+                        <p>Citas Hoy</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-content">
+                        <h3 id="statSemana">0</h3>
+                        <p>Esta Semana</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3 id="statClientes">0</h3>
+                        <p>Clientes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filtros -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <h2>🔍 Filtrar Citas</h2>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label>Desde:</label>
+                        <input type="date" id="filterFechaInicio" class="form-input">
+                    </div>
+                    <div class="filter-group">
+                        <label>Hasta:</label>
+                        <input type="date" id="filterFechaFin" class="form-input">
+                    </div>
+                    <div class="filter-group">
+                        <label>Estado:</label>
+                        <select id="filterEstado" class="form-input">
+                            <option value="">Todos</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="confirmada">Confirmada</option>
+                            <option value="cancelada">Cancelada</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <button class="btn-primary" onclick="aplicarFiltros()">
+                            Buscar
+                        </button>
+                        <button class="btn-secondary" onclick="limpiarFiltros()">
+                            Limpiar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabs -->
+        <section class="tabs-section">
+            <div class="tabs">
+                <button class="tab active" onclick="cambiarTab('todas')">
+                    Todas las Citas
+                </button>
+                <button class="tab" onclick="cambiarTab('hoy')">
+                    Hoy
+                </button>
+                <button class="tab" onclick="cambiarTab('futuras')">
+                    Próximas
+                </button>
+            </div>
+        </section>
+
+        <!-- Tabla de Citas -->
+        <section class="table-section">
+            <div class="table-container">
+                <div id="loadingCitas" class="loading-message" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Cargando citas...</p>
+                </div>
+
+                <div id="noCitas" class="no-data-message" style="display: none;">
+                    <p>📭 No hay citas para mostrar</p>
+                </div>
+
+                <table id="tablaCitas" class="appointments-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Cliente</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Servicio</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="citasTableBody">
+                        <!-- Las citas se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ============================================
+         MODAL: CAMBIAR CONTRASEÑA
+         ============================================ -->
+    <div id="modalCambiarPassword" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔑 Cambiar Contraseña</h2>
+                <button class="modal-close" onclick="cerrarCambiarPassword()">×</button>
+            </div>
+            <form id="formCambiarPassword" class="modal-form">
+                <div class="form-group">
+                    <label>Contraseña Actual</label>
+                    <input 
+                        type="password" 
+                        id="currentPassword" 
+                        class="form-input"
+                        required
+                        minlength="6"
+                    >
+                </div>
+                <div class="form-group">
+                    <label>Nueva Contraseña</label>
+                    <input 
+                        type="password" 
+                        id="newPassword" 
+                        class="form-input"
+                        required
+                        minlength="6"
+                    >
+                </div>
+                <div class="form-group">
+                    <label>Confirmar Nueva Contraseña</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        class="form-input"
+                        required
+                        minlength="6"
+                    >
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="cerrarCambiarPassword()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        Cambiar Contraseña
+                    </button>
+                </div>
+                <div id="passwordError" class="error-message" style="display: none;"></div>
+                <div id="passwordSuccess" class="success-message" style="display: none;"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================
+         MODAL: CONFIRMAR ELIMINACIÓN
+         ============================================ -->
+    <div id="modalEliminar" class="modal" style="display: none;">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>⚠️ Confirmar Eliminación</h2>
+                <button class="modal-close" onclick="cerrarModalEliminar()">×</button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que quieres eliminar esta cita?</p>
+                <p><strong>Esta acción no se puede deshacer.</strong></p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="cerrarModalEliminar()">
+                    Cancelar
+                </button>
+                <button class="btn-danger" onclick="confirmarEliminar()">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./js/config.js"></script>
+    <script src="./js/admin-script.js"></script>
+</body>
+</html>

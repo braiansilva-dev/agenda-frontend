@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Agenda de Citas - Tu Negocio</title>
+    
+    <meta name="description" content="Reserva tu cita online de forma rápida y sencilla">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="./css/styles.css">
+    
+    <!-- Favicon (opcional) -->
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="./assets/logo.webp" alt="Logo del Negocio" class="logo" id="logoNegocio">
+                </div>
+                
+                <h1 class="negocio-nombre" id="negocioNombre">
+                    Agenda Braian Silva
+                </h1>
+                
+                <p class="negocio-descripcion">
+                    Reserva tu cita de forma rápida y sencilla
+                </p>
+            </div>
+        </header>
+
+        <!-- FORMULARIO DE RESERVA -->
+        <main class="main-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">📅 Agendar Cita</h2>
+                    <p class="card-subtitle">Completa el formulario para reservar tu horario</p>
+                </div>
+
+                <form id="formReserva" class="form">
+                    
+                    <!-- Campo: Nombre -->
+                    <div class="form-group">
+                        <label for="nombre" class="form-label">
+                            <span class="label-icon">👤</span>
+                            Nombre completo
+                            <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="nombre" 
+                            name="nombre" 
+                            class="form-input"
+                            placeholder="Ej: Juan Pérez"
+                            required
+                            autocomplete="name"
+                        >
+                    </div>
+
+                    <!-- Campo: Email -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            <span class="label-icon">📧</span>
+                            Correo electrónico
+                            <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input"
+                            placeholder="Ej: juan@ejemplo.com"
+                            required
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <!-- Campo: Teléfono -->
+                    <div class="form-group">
+                        <label for="telefono" class="form-label">
+                            <span class="label-icon">📱</span>
+                            Teléfono (opcional)
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="telefono" 
+                            name="telefono" 
+                            class="form-input"
+                            placeholder="Ej: +598 99 123 456"
+                            autocomplete="tel"
+                        >
+                    </div>
+
+                    <!-- Separador visual -->
+                    <div class="form-divider"></div>
+
+                    <!-- ✨ NUEVA SECCIÓN: Servicios con selección múltiple -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <span class="label-icon">✂️</span>
+                            Selecciona tus servicios
+                            <span class="required">*</span>
+                        </label>
+                        <p class="form-hint">Puedes seleccionar uno o varios servicios</p>
+                        
+                        <!-- Grid de servicios -->
+                        <div id="serviciosGrid" class="servicios-grid">
+                            <!-- Los servicios se cargarán dinámicamente desde JavaScript -->
+                        </div>
+
+                        <!-- Input oculto para enviar los servicios seleccionados -->
+                        <input type="hidden" id="servicios" name="servicios">
+                        
+                        <!-- Panel de resumen con subtotal -->
+                        <div id="resumenServicios" class="resumen-servicios" style="display: none;">
+                            <div class="resumen-header">
+                                <span class="resumen-titulo">📋 Resumen de servicios</span>
+                            </div>
+                            <div id="listaServiciosSeleccionados" class="resumen-lista">
+                                <!-- Servicios seleccionados aparecerán aquí -->
+                            </div>
+                            <div class="resumen-total">
+                                <span class="resumen-total-texto">Subtotal:</span>
+                                <span class="resumen-total-precio" id="subtotalPrecio">$0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Separador visual -->
+                    <div class="form-divider"></div>
+
+                    <!-- Campo: Fecha -->
+                    <div class="form-group">
+                        <label for="fecha" class="form-label">
+                            <span class="label-icon">📆</span>
+                            Selecciona la fecha
+                            <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="date" 
+                            id="fecha" 
+                            name="fecha" 
+                            class="form-input"
+                            required
+                        >
+                        <small class="form-hint">
+                            Elige el día que quieres tu cita
+                        </small>
+                    </div>
+
+                    <!-- Grid de horarios visuales -->
+                    <div class="form-group">
+                        <!-- Input oculto para enviar la hora -->
+                        <input type="hidden" id="hora" name="hora">
+                        
+                        <!-- Indicador de carga -->
+                        <div id="loadingHoras" class="loading-indicator" style="display: none;">
+                            <div class="spinner"></div>
+                            <span>Cargando horarios disponibles...</span>
+                        </div>
+                        
+                        <!-- Grid de horarios -->
+                        <div id="horariosGrid" class="horarios-grid" style="display: none;"></div>
+                    </div>
+
+                    <!-- Botón de envío -->
+                    <button type="submit" class="btn-submit" id="btnSubmit">
+                        <span class="btn-icon">✓</span>
+                        <span class="btn-text">Confirmar Reserva</span>
+                    </button>
+
+                    <!-- Nota legal -->
+                    <p class="form-disclaimer">
+                        Al reservar, aceptas recibir confirmaciones por email
+                    </p>
+                </form>
+            </div>
+        </main>
+
+        <!-- MENSAJES DE ÉXITO/ERROR -->
+        <div id="mensaje" class="mensaje-container" style="display: none;">
+            <div class="mensaje-content">
+                <span class="mensaje-icon" id="mensajeIcon">✓</span>
+                <div class="mensaje-text">
+                    <h3 class="mensaje-title" id="mensajeTitulo">Título</h3>
+                    <p class="mensaje-descripcion" id="mensajeTexto">Descripción</p>
+                </div>
+                <button class="mensaje-close" onclick="cerrarMensaje()">✕</button>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-text">
+                    ¿Necesitas ayuda? 
+                    <a href="mailto:braiansilva4@gmail.com" class="footer-link" id="footerEmail">
+                        braiansilva4@gmail.com
+                    </a>
+                </p>
+                <p class="footer-copyright">
+                    © 2026 Braian Silva. Agenda online.
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="./js/config.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>

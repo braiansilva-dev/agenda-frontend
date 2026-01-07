@@ -1,0 +1,927 @@
+/* admin-styles.css - MOBILE FIRST MEJORADO */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --secondary: #64748b;
+    --secondary-hover: #475569;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+    
+    --bg-dark: #0f172a;
+    --bg-medium: #1e293b;
+    --bg-light: #f8fafc;
+    --text-dark: #1e293b;
+    --text-medium: #64748b;
+    --text-light: #94a3b8;
+    --border: #e2e8f0;
+    
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ========== LOGIN SCREEN ========== */
+.login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-card {
+    background: white;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.login-header h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.login-header p {
+    color: var(--text-medium);
+    font-size: 14px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ========== ADMIN PANEL ========== */
+.admin-panel {
+    min-height: 100vh;
+    background: var(--bg-light);
+    padding-bottom: 40px;
+}
+
+.admin-header {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.admin-header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.admin-header h1 {
+    font-size: 20px;
+}
+
+.admin-header-right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.admin-name {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 14px;
+    padding: 8px 12px;
+    background: var(--bg-light);
+    border-radius: var(--radius-sm);
+}
+
+/* ========== ESTADÍSTICAS ========== */
+.stats-section {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.2s;
+}
+
+.stat-card:active {
+    transform: scale(0.98);
+}
+
+.stat-icon {
+    font-size: 32px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-light);
+    border-radius: var(--radius);
+}
+
+.stat-content h3 {
+    font-size: 28px;
+    margin-bottom: 4px;
+    color: var(--primary);
+}
+
+.stat-content p {
+    color: var(--text-medium);
+    font-size: 14px;
+}
+
+/* ========== FILTROS ========== */
+.filters-section {
+    padding: 0 20px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.filters-container {
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.filters-container h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-dark);
+}
+
+/* ========== TABS ========== */
+.tabs-section {
+    padding: 0 20px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    background: white;
+    padding: 8px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+}
+
+.tab {
+    flex: 1;
+    min-width: fit-content;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-medium);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.tab:active {
+    transform: scale(0.95);
+}
+
+.tab.active {
+    background: var(--primary);
+    color: white;
+}
+
+/* ========== TABLA / CARDS DE CITAS ========== */
+.table-section {
+    padding: 0 20px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.table-container {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+/* ============================================
+   ✨ MOBILE: CARDS INDIVIDUALES
+   ============================================ */
+.appointments-table {
+    width: 100%;
+}
+
+/* Ocultar encabezados en móvil */
+.appointments-table thead {
+    display: none;
+}
+
+/* Cuerpo como contenedor de cards */
+.appointments-table tbody {
+    display: block;
+    padding: 12px;
+}
+
+/* Cada fila es una card */
+.appointments-table tr {
+    display: block;
+    background: var(--bg-light);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease-out backwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.appointments-table tr:last-child {
+    margin-bottom: 0;
+}
+
+.appointments-table tr:active {
+    transform: scale(0.98);
+}
+
+/* Cada celda es un bloque */
+.appointments-table td {
+    display: block;
+    padding: 0;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.appointments-table td:last-child {
+    margin-bottom: 0;
+}
+
+/* Agregar labels antes de cada dato en móvil */
+.appointments-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-weight: 700;
+    color: var(--text-medium);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+/* Contenido de las celdas */
+.appointments-table td:nth-child(1) {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.appointments-table td:nth-child(1)::before {
+    content: '📅 Fecha';
+}
+
+.appointments-table td:nth-child(2) {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.appointments-table td:nth-child(2)::before {
+    content: '⏰ Hora';
+}
+
+.appointments-table td:nth-child(3) {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.appointments-table td:nth-child(3)::before {
+    content: '👤 Cliente';
+}
+
+.appointments-table td:nth-child(4) {
+    font-size: 13px;
+    color: var(--text-medium);
+    word-break: break-word;
+}
+
+.appointments-table td:nth-child(4)::before {
+    content: '📧 Email';
+}
+
+.appointments-table td:nth-child(5) {
+    font-size: 14px;
+    color: var(--text-medium);
+}
+
+.appointments-table td:nth-child(5)::before {
+    content: '📱 Teléfono';
+}
+
+.appointments-table td:nth-child(6) {
+    font-size: 14px;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.appointments-table td:nth-child(6)::before {
+    content: '✂️ Servicio';
+}
+
+.appointments-table td:nth-child(7)::before {
+    content: '📊 Estado';
+}
+
+.appointments-table td:nth-child(8)::before {
+    content: '⚙️ Acciones';
+}
+
+/* Estados de citas */
+.estado-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.estado-pendiente {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.estado-confirmada {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.estado-cancelada {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* Acciones */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    flex: 1;
+    min-width: 80px;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-action:active {
+    transform: scale(0.95);
+}
+
+.btn-confirmar {
+    background: var(--success);
+    color: white;
+}
+
+.btn-cancelar {
+    background: var(--warning);
+    color: white;
+}
+
+.btn-eliminar {
+    background: var(--danger);
+    color: white;
+}
+
+/* ========== FORM ELEMENTS ========== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-dark);
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* ========== BUTTONS ========== */
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: var(--secondary-hover);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: var(--danger-hover);
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+/* ========== MODAL ========== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    border-radius: var(--radius);
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-small {
+    max-width: 400px;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-size: 20px;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--text-medium);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.modal-close:hover {
+    background: var(--bg-light);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-actions {
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.modal-actions button {
+    flex: 1;
+    min-width: 120px;
+}
+
+/* ========== MESSAGES ========== */
+.error-message,
+.success-message {
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.error-message {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.success-message {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.loading-message,
+.no-data-message {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-medium);
+}
+
+.loading-message p,
+.no-data-message p {
+    font-size: 16px;
+    margin-top: 12px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ========== TABLET ========== */
+@media (min-width: 640px) {
+    .admin-header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .filters-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .filter-group:last-child {
+        grid-column: span 2;
+        flex-direction: row;
+        gap: 12px;
+    }
+
+    .filter-group:last-child button {
+        flex: 1;
+    }
+
+    /* Cards más compactas en tablet */
+    .appointments-table tbody {
+        padding: 16px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .appointments-table tr {
+        margin-bottom: 0;
+    }
+
+    .modal-actions button {
+        flex: 0;
+    }
+}
+
+/* ========== DESKTOP ========== */
+@media (min-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .filters-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .filter-group:last-child {
+        grid-column: auto;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-danger:hover {
+        transform: translateY(-2px);
+    }
+
+    .tab:hover {
+        background: var(--bg-light);
+    }
+
+    .tab.active:hover {
+        background: var(--primary-hover);
+    }
+
+    /* ============================================
+       ✨ DESKTOP: TABLA TRADICIONAL ESPACIOSA
+       ============================================ */
+    
+    .appointments-table {
+        display: table;
+        table-layout: fixed;
+    }
+
+    .appointments-table thead {
+        display: table-header-group;
+        background: linear-gradient(135deg, var(--primary) 0%, #5b21b6 100%);
+    }
+
+    .appointments-table tbody {
+        display: table-row-group;
+        padding: 0;
+        grid-template-columns: none;
+        gap: 0;
+    }
+
+    .appointments-table tr {
+        display: table-row;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        border-bottom: 1px solid var(--border);
+        transition: background 0.2s;
+    }
+
+    .appointments-table tr:hover {
+        background: var(--bg-light);
+    }
+
+    .appointments-table tr:active {
+        transform: none;
+    }
+
+    .appointments-table th,
+    .appointments-table td {
+        display: table-cell;
+        padding: 16px 12px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .appointments-table th {
+        font-weight: 700;
+        color: white;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        position: sticky;
+        top: 0;
+        background: linear-gradient(135deg, var(--primary) 0%, #5b21b6 100%);
+        border-bottom: 2px solid var(--primary-hover);
+    }
+
+    .appointments-table td {
+        font-size: 14px;
+        color: var(--text-dark);
+        margin: 0;
+    }
+
+    /* Quitar labels en desktop */
+    .appointments-table td::before {
+        display: none;
+    }
+
+    /* Anchos de columnas optimizados */
+    .appointments-table th:nth-child(1),
+    .appointments-table td:nth-child(1) {
+        width: 10%;
+    }
+
+    .appointments-table th:nth-child(2),
+    .appointments-table td:nth-child(2) {
+        width: 8%;
+    }
+
+    .appointments-table th:nth-child(3),
+    .appointments-table td:nth-child(3) {
+        width: 15%;
+    }
+
+    .appointments-table th:nth-child(4),
+    .appointments-table td:nth-child(4) {
+        width: 18%;
+    }
+
+    .appointments-table th:nth-child(5),
+    .appointments-table td:nth-child(5) {
+        width: 12%;
+    }
+
+    .appointments-table th:nth-child(6),
+    .appointments-table td:nth-child(6) {
+        width: 15%;
+    }
+
+    .appointments-table th:nth-child(7),
+    .appointments-table td:nth-child(7) {
+        width: 10%;
+    }
+
+    .appointments-table th:nth-child(8),
+    .appointments-table td:nth-child(8) {
+        width: 12%;
+    }
+
+    /* Estilos específicos de contenido en desktop */
+    .appointments-table td:nth-child(1),
+    .appointments-table td:nth-child(2),
+    .appointments-table td:nth-child(3) {
+        font-weight: 600;
+    }
+
+    .appointments-table td:nth-child(4),
+    .appointments-table td:nth-child(5) {
+        font-size: 13px;
+        color: var(--text-medium);
+    }
+
+    /* Acciones más compactas en desktop */
+    .btn-action {
+        flex: 0;
+        min-width: auto;
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
