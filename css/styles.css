@@ -1097,47 +1097,196 @@ input[type="date"].form-input {
    FOOTER
    ============================================ */
 
-.footer {
-    text-align: center;
-    padding: var(--espaciado-md);
-    color: white;
-}
+ .footer {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: var(--espaciado-lg) var(--espaciado-md);
+            color: white;
+        }
 
-.footer-content {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: var(--radius-md);
-    padding: var(--espaciado-md);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-.footer-text {
-    font-size: 13px;
-    margin-bottom: var(--espaciado-sm);
-    line-height: 1.5;
-}
+        /* Sección de Contacto y Ubicación */
+        .footer-contact-section {
+            margin-bottom: var(--espaciado-lg);
+        }
 
-.footer-link {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    transition: all 0.2s ease;
-    display: inline-block;
-    padding: 4px 0;
-}
+        .footer-text {
+            font-size: 14px;
+            margin-bottom: var(--espaciado-md);
+            line-height: 1.6;
+            opacity: 0.95;
+        }
 
-.footer-link:active {
-    border-bottom-color: white;
-    opacity: 0.8;
-}
+        .footer-email {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+            display: inline-block;
+            padding: 2px 0;
+        }
 
-.footer-copyright {
-    font-size: 11px;
-    opacity: 0.8;
-    line-height: 1.5;
-}
+        .footer-email:hover {
+            border-bottom-color: white;
+            opacity: 0.8;
+        }
 
+        /* Botones de Acción */
+        .footer-actions {
+            display: flex;
+            gap: var(--espaciado-sm);
+            justify-content: center;
+            margin-bottom: var(--espaciado-lg);
+        }
+
+        .footer-btn {
+            flex: 1;
+            max-width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 20px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: var(--sombra-md);
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .footer-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* WhatsApp Button */
+        .footer-btn-whatsapp {
+            background: var(--whatsapp-green);
+            color: white;
+        }
+
+        .footer-btn-whatsapp:hover {
+            background: #20ba5a;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Location Button */
+        .footer-btn-location {
+            background: var(--location-red);
+            color: white;
+        }
+
+        .footer-btn-location:hover {
+            background: #d33b2c;
+            box-shadow: 0 4px 12px rgba(234, 67, 53, 0.4);
+        }
+
+        .footer-btn-icon {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-btn-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Divider */
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                transparent 100%
+            );
+            margin: var(--espaciado-lg) 0;
+        }
+
+        /* Copyright y Créditos */
+        .footer-bottom {
+            text-align: center;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: var(--espaciado-md);
+            line-height: 1.5;
+        }
+
+        /* Créditos del Creador */
+        .footer-credits {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 12px;
+            opacity: 0.75;
+            flex-wrap: wrap;
+        }
+
+        .footer-credits-text {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .footer-credits-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .footer-credits-link:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-credits-link:active {
+            transform: translateY(0);
+        }
+
+        .footer-credits-logo {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            object-fit: cover;
+            background: white;
+        }
 /* ============================================
    RESPONSIVE - TABLETS
    ============================================ */
@@ -1223,16 +1372,38 @@ input[type="date"].form-input {
     }
 
     .footer {
-        padding: var(--espaciado-lg);
-    }
+                padding: var(--espaciado-xl) var(--espaciado-lg);
+            }
 
-    .footer-text {
-        font-size: 14px;
-    }
+            .footer-text {
+                font-size: 15px;
+            }
 
-    .footer-copyright {
-        font-size: 12px;
-    }
+            .footer-actions {
+                gap: var(--espaciado-md);
+            }
+
+            .footer-btn {
+                font-size: 15px;
+                padding: 16px 24px;
+            }
+
+            .footer-btn-icon {
+                font-size: 22px;
+            }
+
+            .footer-copyright {
+                font-size: 14px;
+            }
+
+            .footer-credits {
+                font-size: 13px;
+            }
+
+            .footer-credits-logo {
+                width: 22px;
+                height: 22px;
+            }
 
     .logo:hover {
         transform: scale(1.05);
@@ -1246,10 +1417,6 @@ input[type="date"].form-input {
     .mensaje-close:hover {
         background: var(--fondo-gris);
         color: var(--texto-oscuro);
-    }
-
-    .footer-link:hover {
-        border-bottom-color: white;
     }
 
     .horario-card:hover:not(.ocupado):not(.seleccionado) {
@@ -1293,4 +1460,25 @@ input[type="date"].form-input {
     .mensaje-content {
         padding: 20px 28px;
     }
+
+    .footer {
+                padding: var(--espaciado-xl) var(--espaciado-xl);
+            }
+
+            .footer-actions {
+                max-width: 480px;
+                margin: 0 auto var(--espaciado-lg);
+            }
+
+            .footer-btn {
+                max-width: 220px;
+            }
+
+            .footer-btn:hover {
+                transform: translateY(-3px);
+            }
+
+            .footer-credits-link:hover {
+                transform: translateY(-3px);
+            }
 }

@@ -390,6 +390,154 @@ const CONFIG_MONEDA = {
 };
 
 // ============================================
+// ✨ CONFIGURACIÓN DEL FOOTER (NUEVO)
+// ============================================
+
+const CONFIG_FOOTER = {
+    // 📱 WhatsApp
+    whatsapp: {
+        // IMPORTANTE: Número con código de país, SIN el símbolo +
+        // Ejemplo Uruguay: 59899123456
+        // Ejemplo España: 34612345678
+        // Ejemplo México: 525512345678
+        numero: '59899123456',
+        
+        // Mensaje predeterminado que aparecerá en WhatsApp
+        mensaje: 'Hola! Quiero agendar una cita'
+    },
+    
+    // 📍 Ubicación (Google Maps)
+    ubicacion: {
+        // OPCIÓN 1: Usar coordenadas GPS (recomendado para precisión)
+        // Para obtener coordenadas:
+        // 1. Abre Google Maps
+        // 2. Haz clic derecho en tu ubicación
+        // 3. Selecciona las coordenadas que aparecen arriba
+        // 4. Formato: 'latitud,longitud' (sin espacios)
+        coords: '-34.909166,-54.958056',
+        
+        // OPCIÓN 2: Usar dirección (comentar "coords" y descomentar esta)
+        // direccion: 'Av. Principal 123, Maldonado, Uruguay'
+        
+        // CÓMO CAMBIAR ENTRE OPCIONES:
+        // - Para usar coordenadas: deja "coords" y comenta "direccion"
+        // - Para usar dirección: comenta "coords" y descomenta "direccion"
+    },
+    
+    // 👨‍💻 Créditos del Creador (tu información)
+    creador: {
+        // Tu nombre o el de tu empresa
+        nombre: 'Braian Silva',
+        
+        // URL de tu portfolio o página web
+        // Ejemplo: 'https://miportfolio.com'
+        // Ejemplo: 'https://instagram.com/tunombre'
+        // Ejemplo: 'https://linkedin.com/in/tunombre'
+        urlPortfolio: 'https://braiansilva-dev.github.io/portfolio/',
+        
+        // URL de tu logo (puede ser ruta local o URL externa)
+        // Ruta local: './assets/mi-logo.png'
+        // URL externa: 'https://i.imgur.com/tulogo.png'
+        logoUrl: './frontend/assets/logo.webp'
+        
+        // NOTA: El logo debe ser cuadrado (40x40px mínimo)
+        // Formatos: PNG, JPG, SVG, WebP
+    }
+};
+
+/* ============================================
+   📖 GUÍA RÁPIDA: CÓMO CONFIGURAR EL FOOTER
+   ============================================
+   
+   🔧 CAMBIAR WHATSAPP:
+   --------------------
+   1. Busca "CONFIG_FOOTER" arriba
+   2. En "numero", pon tu número con código de país, sin +
+      Ejemplos:
+      - Uruguay: '59899123456'
+      - Argentina: '5491112345678'
+      - España: '34612345678'
+      - México: '525512345678'
+      - Colombia: '573001234567'
+   
+   3. En "mensaje", personaliza el texto que quieras
+      Ejemplos:
+      - 'Hola! Quiero hacer una consulta'
+      - 'Buenos días, quisiera agendar'
+      - 'Hola! Vi tu página web'
+   
+   
+   🗺️ CAMBIAR UBICACIÓN:
+   ---------------------
+   MÉTODO 1 - Coordenadas (MÁS PRECISO):
+   1. Abre Google Maps en tu navegador
+   2. Busca tu negocio o ubicación
+   3. Haz clic derecho sobre el marcador
+   4. Copia las coordenadas que aparecen arriba
+   5. Pégalas en "coords" (formato: '-34.123456,-54.123456')
+   
+   MÉTODO 2 - Dirección:
+   1. Comenta la línea de "coords" agregando // al inicio
+   2. Descomenta la línea de "direccion" quitando //
+   3. Escribe tu dirección completa entre comillas
+      Ejemplo: 'Av. Gorlero 123, Punta del Este, Uruguay'
+   
+   
+   👤 CAMBIAR TUS CRÉDITOS:
+   ------------------------
+   1. En "nombre", pon tu nombre o el de tu empresa
+   2. En "urlPortfolio", pon la URL donde quieres que te contacten:
+      - Tu portfolio personal
+      - Tu Instagram
+      - Tu LinkedIn
+      - Tu página web
+      - Tu WhatsApp Business
+   
+   3. En "logoUrl", pon la ruta de tu logo:
+      - Si está en assets: './assets/mi-logo.png'
+      - Si está en la raíz: './mi-logo.png'
+      - Si es URL externa: 'https://i.imgur.com/abc123.png'
+   
+   NOTA: Tu logo debe ser cuadrado (mínimo 40x40 píxeles)
+   
+   
+   ❓ EJEMPLOS COMPLETOS:
+   ----------------------
+   
+   // Para una barbería:
+   whatsapp: {
+       numero: '59899123456',
+       mensaje: '¡Hola! Quiero reservar un corte'
+   },
+   ubicacion: {
+       coords: '-34.903722,-56.191494',
+       // direccion: 'Av. 18 de Julio 1234, Montevideo'
+   },
+   creador: {
+       nombre: 'Juan Pérez',
+       urlPortfolio: 'https://instagram.com/juanperez',
+       logoUrl: './assets/logo-jp.png'
+   }
+   
+   
+   // Para un spa:
+   whatsapp: {
+       numero: '59894567890',
+       mensaje: 'Hola! Quisiera información sobre tratamientos'
+   },
+   ubicacion: {
+       // coords: '-34.949906,-54.943566',
+       direccion: 'Calle 20, Parada 5, Punta del Este'
+   },
+   creador: {
+       nombre: 'María Design Studio',
+       urlPortfolio: 'https://mariadesign.com',
+       logoUrl: 'https://i.imgur.com/logo-maria.png'
+   }
+   
+*/
+
+// ============================================
 // FUNCIÓN PARA FORMATEAR PRECIO
 // ============================================
 
@@ -430,4 +578,4 @@ function obtenerServicios() {
 // ============================================
 
 // Si usas módulos ES6, puedes descomentar esto:
-// export { obtenerServicios, formatearPrecio, TIPO_NEGOCIO };
+// export { obtenerServicios, formatearPrecio, TIPO_NEGOCIO, CONFIG_FOOTER };
