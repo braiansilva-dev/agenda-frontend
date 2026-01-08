@@ -163,7 +163,7 @@ function actualizarResumen() {
         item.innerHTML = `
             <div class="resumen-item-info">
                 <div class="resumen-item-nombre">${servicio.nombre}</div>
-                <div class="resumen-item-duracion">${servicio.descripcion}</div>
+                <div class="resumen-item-duracion">⏱️ ${servicio.duracion} minutos</div>
             </div>
             <div class="resumen-item-precio">${formatearPrecio(servicio.precio)}</div>
         `;
@@ -187,7 +187,7 @@ function actualizarInputServicios() {
         id: s.id,
         nombre: s.nombre,
         precio: s.precio,
-        descripcion: s.descripcion
+        duracion: s.duracion
     })));
 }
 
